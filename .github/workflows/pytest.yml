@@ -16,62 +16,68 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v4
-    
-    - name: Set up Python 3.13
-      uses: actions/setup-python@v4
-      with:
-        python-version: "3.13"
-        
-    - name: Install dependencies
-      run: |
-        python -m pip install --upgrade pip
-        pip install -r requirements.txt
-        
-    - name: Test with pytest and generate Allure results
-      run: |
-        ENV=dev pytest --alluredir=.allure-results
-        
-    - name: Get Allure history
-      uses: actions/checkout@v4
-      if: always()
-      continue-on-error: true
-      with:
-        ref: gh-pages
-        path: gh-pages
-        
-    - name: Allure Report action from marketplace
-      uses: simple-elf/allure-report-action@master
-      if: always()
-      id: allure-report
-      with:
-        allure_results: .allure-results
-        gh_pages: gh-pages
-        allure_report: .allure-report
-        allure_history: allure-history
-        keep_reports: 20
-        
-    - name: Deploy report to Github Pages
-      if: always()
-      uses: peaceiris/actions-gh-pages@v3
-      with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_dir: allure-history
-        
-    - name: Archive Pytest test results
-      uses: actions/upload-artifact@v4
-      if: always()
-      with:
-        name: pytest-results
-        path: |
-          .allure-results/
-          .report-html/
-        retention-days: 30
-        
-    - name: Upload Allure results as artifact
-      uses: actions/upload-artifact@v4
-      if: always()
-      with:
-        name: allure-results
-        path: .allure-results
-        retention-days: 30
+      - name: 📥 检出代码
+        uses: actions/checkout@v4
+
+      - name: 🐍 设置 Python 环境
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.13"
+
+      - name: 📦 安装依赖
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: 🧪 运行测试
+        run: |
+          ENV=dev pytest --alluredir=.allure-results
+
+      - name: 📄 获取 Allure 历史记录
+        uses: actions/checkout@v4
+        if: always()
+        continue-on-error: true
+        with:
+          ref: gh-pages
+          path: gh-pages
+
+      - name: 📊 生成 Allure 报告
+        uses: simple-elf/allure-report-action@master
+        if: always()
+        id: allure-report
+        with:
+          allure_results: .allure-results
+          gh_pages: gh-pages
+          allure_report: .allure-report
+          allure_history: allure-history
+          keep_reports: 20
+
+      - name: 🚀 部署报告到 GitHub Pages
+        if: always()
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: allure-history
+
+      - name: 📦 归档 Pytest 测试结果
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: pytest-results
+          path: |
+            .allure-results/
+            .report-html/
+          retention-days: 30
+
+      - name: 📦 上传 Allure 测试结果
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: allure-results
+          path: .allure-results
+          retention-days: 30
+
+      - name: 🧪 运行测试（带覆盖率）
+        run: |
+          pip install pytest-cov
+          pytest --cov=my_package --cov-report=xml

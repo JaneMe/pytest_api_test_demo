@@ -52,6 +52,12 @@ jobs:
           allure_history: allure-history
           keep_reports: 20
 
+      - name: 🧑‍💻 设置 Git 用户信息
+        run: |
+            git config --global user.name "github-actions"
+            git config --global user.email "github-actions@github.com"
+  
+
       - name: 🚀 部署报告到 GitHub Pages
         if: always()
         uses: peaceiris/actions-gh-pages@v3
@@ -77,7 +83,7 @@ jobs:
           path: .allure-results
           retention-days: 30
 
-      - name: 🧪 运行测试（带覆盖率）
-        run: |
-          pip install pytest-cov
-          pytest --cov=my_package --cov-report=xml
+      # - name: 🧪 运行测试（带覆盖率）
+      #   run: |
+      #     pip install pytest-cov
+      #     pytest --cov=my_package --cov-report=xml

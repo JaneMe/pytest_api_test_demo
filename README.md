@@ -2,6 +2,8 @@
 
 一个基于 Pytest 的 API 自动化测试框架，支持多环境配置、数据驱动测试和 Allure 报告生成。
 
+项目参考：https://github.com/Automation-Test-Starter/Pytest-API-Test-Starter?tab=readme-ov-file#8integration-pytest-html-reporter-test-report
+
 ## 📋 项目特性
 
 - 🚀 **多环境支持**：dev/test/prod 环境配置切换

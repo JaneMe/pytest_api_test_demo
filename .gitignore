@@ -1,0 +1,33 @@
+# 测试报告相关文件 (隐藏文件夹)
+.allure-results/
+.allure-report/
+.report-html/
+
+# Pytest 缓存和临时文件
+.pytest_cache/
+.coverage
+coverage.xml
+
+# Python 缓存文件
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+
+# 虚拟环境\IDE 文件
+.venv/
+.idea/
+
+# 操作系统文件
+.DS_Store
+Thumbs.db
+
+# 日志文件
+*.log
+logs/
+
+# 临时文件
+tmp/
+temp/
+.tmp/

@@ -2,4 +2,4 @@ pytest
 pytest-xdist
 requests
 allure-pytest
-pytest-html
+pytest-html-reporter

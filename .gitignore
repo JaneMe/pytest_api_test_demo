@@ -6,10 +6,10 @@ coverage.xml
 
 # Python 缓存文件
 __pycache__/
-*.pyc
-*.pyo
-*.pyd
-.Python
+# *.pyc
+# *.pyo
+# *.pyd
+# .Python
 
 # 虚拟环境\IDE 文件
 .venv/

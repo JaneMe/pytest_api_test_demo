@@ -1,7 +1,3 @@
-# 测试报告相关文件 (隐藏文件夹)
-.allure-results/
-.allure-report/
-.report-html/
 
 # Pytest 缓存和临时文件
 .pytest_cache/

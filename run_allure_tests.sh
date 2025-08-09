@@ -4,7 +4,7 @@
 # 运行测试并生成 Allure 数据
 ENV=dev pytest tests 
 # 生成 Allure HTML 报告
-allure generate allure-results -o allure-report --clean
+allure generate report/allure-results -o report/allure-report --clean
 # 打开 Allure 报告的两种方式： server or open
 # allure server .allure-report 
-allure open allure-report 
+allure open report/allure-report 

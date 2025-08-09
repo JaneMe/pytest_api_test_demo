@@ -1,3 +1,0 @@
-response status code is201
-response data is{'title': 'foo', 'body': 'bar', 'userId': '1', 'id': 101}
-{'title': 'foo', 'body': 'bar', 'userId': '1', 'id': 101}

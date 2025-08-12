@@ -1,5 +1,9 @@
-pytest
-pytest-xdist
-requests
-allure-pytest
-pytest-html
+# 测试框架
+pytest>=8.0.0
+
+# HTTP 请求
+requests>=2.31.0
+
+# 测试报告
+allure-pytest>=2.13.0
+pytest-html>=4.1.1

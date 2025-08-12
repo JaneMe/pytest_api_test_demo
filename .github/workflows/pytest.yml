@@ -31,8 +31,8 @@ jobs:
 
       - name: 🧪 运行测试
         run: |
-          mkdir -p .report/allure-results  # 保证目录存在 
-          ENV=dev pytest --alluredir=.report/allure-results
+          mkdir -p .report/allure-results .report/html-reporter  # 保证目录存在 
+          ENV=dev pytest --alluredir=.report/allure-results --html-report=.report/html-reporter --title='GitHub Action API 测试报告'
 
       - name: 📄 获取 Allure 历史记录
         uses: actions/checkout@v4
@@ -73,7 +73,7 @@ jobs:
           name: pytest-results
           path: |
             .report/allure-results/
-            .report/report-html/
+            .report/html-reporter/
           retention-days: 30
 
       - name: 📦 上传 Allure 测试结果

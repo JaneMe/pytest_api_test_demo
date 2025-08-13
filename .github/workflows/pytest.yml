@@ -1,4 +1,4 @@
-name: Pytest API Testing
+name: Pytest API Testing (uv)
 
 on:
   push:
@@ -20,19 +20,24 @@ jobs:
         uses: actions/checkout@v4
 
       - name: 🐍 设置 Python 环境
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v5
         with:
           python-version: "3.13"
 
-      - name: 📦 安装依赖
+      - name: ⚡ 安装 uv
+        uses: astral-sh/setup-uv@v4
+        with:
+          enable-cache: true
+          cache-dependency-glob: "uv.lock"
+
+      - name: 📦 同步依赖
         run: |
-          python -m pip install --upgrade pip
-          pip install -r requirements.txt
+          uv sync --group test --group reports
 
       - name: 🧪 运行测试
         run: |
           mkdir -p .report/allure-results .report/html-reporter  # 保证目录存在 
-          ENV=dev pytest --alluredir=.report/allure-results --html-report=.report/html-reporter --title='GitHub Action API 测试报告'
+          ENV=dev uv run pytest --alluredir=.report/allure-results --html=.report/html-reporter/pytest_report.html --self-contained-html --title='GitHub Action API 测试报告'
 
       - name: 📄 获取 Allure 历史记录
         uses: actions/checkout@v4

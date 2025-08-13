@@ -37,7 +37,7 @@ jobs:
       - name: 🧪 运行测试
         run: |
           mkdir -p .report/allure-results .report/html-reporter  # 保证目录存在 
-          ENV=dev uv run pytest --alluredir=.report/allure-results --html=.report/html-reporter/pytest_report.html --self-contained-html --title='GitHub Action API 测试报告'
+          ENV=dev uv run pytest tests/ --alluredir=.report/allure-results --html=.report/html-reporter/pytest_report.html --self-contained-html
 
       - name: 📄 获取 Allure 历史记录
         uses: actions/checkout@v4

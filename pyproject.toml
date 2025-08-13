@@ -1,0 +1,69 @@
+# 项目配置文件，用于定义项目元数据、依赖关系和工具配置
+
+# 项目元数据（项目名称、版本、依赖的 Python 版本）
+[project]
+name = "pytest_api_test_demo"          # 项目名称
+version = "0.1.0"                      # 项目版本
+requires-python = ">=3.13.5"           # 项目依赖的 Python 版本
+
+# 核心运行依赖 - 最小化，只包含生产环境必需的
+dependencies = [
+    "requests>=2.32.4",
+]
+
+# Pytest 测试框架配置选项
+[tool.pytest.ini_options]
+# 配置 pytest 命令行参数
+addopts = [
+    "-vs",                              # 详细输出且不捕获stdout
+    "-rf",                              # 显示失败测试的详细信息
+    "--html=.report/html-reporter/pytest_report.html",    # 生成HTML测试报告
+    "--self-contained-html",            # 生成自包含的HTML报告
+    "--alluredir=.report/allure-results",                # Allure报告输出目录
+    "--clean-alluredir",                # 清理之前的allure结果
+]
+
+# 指定测试目录
+testpaths = ["tests"]
+
+# 自定义标记
+markers = [
+    "smoke: 冒烟测试",
+    "regression: 回归测试",
+    "api: API测试",
+    "slow: 慢速测试",
+]
+
+# 依赖组配置
+[dependency-groups]
+# 测试依赖
+test = [
+    "pytest>=8.4.1",
+    "pytest-cov>=6.2.1",
+    "pytest-xdist>=3.3.1",
+]
+
+# 测试报告
+reports = [
+    "allure-pytest>=2.15.0",
+    "pytest-html>=4.1.1",
+]
+
+# 代码质量工具
+lint = [
+    # "black>=25.1.0",
+    # "isort>=5.12.0",
+    # "flake8>=6.0.0",
+]
+
+# API 测试专用
+api = [
+    # "pydantic>=2.4.0",
+    # "jsonschema>=4.19.0",
+    # "faker>=19.6.0",
+]
+
+# 开发工具
+dev = [
+    # "pre-commit>=3.4.0",
+]

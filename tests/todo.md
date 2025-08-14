@@ -1,3 +1,0 @@
-- 集成 GitHub Action
-    - 创建 .github/workflows 目录
-    - 创建工作流文件：在 .github/workflows 目录中创建 YAML 格式的工作流文件，例如 pytest.yml。

@@ -32,7 +32,7 @@ jobs:
 
       - name: 📦 同步依赖
         run: |
-          uv sync --group test --group reports
+          uv sync --all-groups
 
       - name: 🧪 运行测试
         run: |
@@ -56,7 +56,7 @@ jobs:
           gh_pages: gh-pages
           allure_report: .report/allure-report
           allure_history: .report/allure-history
-          keep_reports: 20
+          keep_reports: 30
 
       - name: 🧑‍💻 设置 Git 用户信息
         run: |

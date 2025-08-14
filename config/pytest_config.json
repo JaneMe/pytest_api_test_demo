@@ -1,0 +1,63 @@
+{
+    "environments": {
+        "dev": {
+            "description": "开发环境 - 运行所有测试",
+            "env_vars": {
+                "ENV": "dev"
+            },
+            "pytest_args": [
+                "tests/",
+                "-v",
+                "--tb=long"
+            ],
+            "sync_groups": ["test", "reports"],
+            "generate_allure": true
+        },
+        "test": {
+            "description": "测试环境 - 运行回归测试",
+            "env_vars": {
+                "ENV": "test"
+            },
+            "pytest_args": [
+                "tests/",
+                "-m", "regression or api",
+                "-v",
+                "--tb=short"
+            ],
+            "sync_groups": ["test", "reports"],
+            "generate_allure": true
+        },
+        "prod": {
+            "description": "生产环境 - 只运行冒烟测试",
+            "env_vars": {
+                "ENV": "prod"
+            },
+            "pytest_args": [
+                "tests/",
+                "-m", "smoke",
+                "-v",
+                "--tb=short",
+                "--maxfail=3"
+            ],
+            "sync_groups": ["test", "reports"],
+            "generate_allure": false
+        },
+        "ci": {
+            "description": "CI环境 - 并行运行所有测试",
+            "env_vars": {
+                "ENV": "test",
+                "CI": "true"
+            },
+            "pytest_args": [
+                "tests/",
+                "-n", "auto",
+                "-v",
+                "--tb=short",
+                "--strict-markers",
+                "--junit-xml=.report/junit.xml"
+            ],
+            "sync_groups": ["test", "reports"],
+            "generate_allure": true
+        }
+    }
+}

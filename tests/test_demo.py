@@ -1,8 +1,11 @@
 import requests
+import pytest
 
 
 class TestPytestDemo:
 
+    @pytest.mark.smoke
+    @pytest.mark.api
     def test_get_demo(self):
         base_url = "https://jsonplaceholder.typicode.com"
         # SEND REQUEST
@@ -12,6 +15,8 @@ class TestPytestDemo:
         assert response.json()['userId'] == 1
         assert response.json()['id'] == 1
 
+    @pytest.mark.regression
+    @pytest.mark.api
     def test_post_demo(self):
         base_url = "https://jsonplaceholder.typicode.com"
         requests_data = {
